@@ -1,0 +1,4 @@
+{{extend 'layout.html'}}
+{{for i in range(len(x)):}}
+<b>{{=i+1}}</b>. {{=x[i]['commentdata']}}
+{{pass}}

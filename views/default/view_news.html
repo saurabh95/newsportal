@@ -1,0 +1,7 @@
+{{extend 'layout.html'}}
+{{for i in range(len(x)):}}
+{{st=str(x[i]['id'])}}
+{{st='display?cate='+st}}
+<a href={{=URL(st)}}> {{=x[i]['name']}}</a>
+<br/>
+{{pass}}

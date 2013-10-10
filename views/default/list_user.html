@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+{{for i in range(len(x)):}}
+{{=x[i]['first_name']}}
+{{=x[i]['last_name']}}
+<div style="text-align:right">
+	<form action={{=URL('default','delete_user')}} method="post">
+		<input type="hidden" name="user_id" value={{=x[i]['id']}}/>
+		<input type="submit" value="Delete"/>	
+	</form>
+</div>
+<br/>
+{{pass}}

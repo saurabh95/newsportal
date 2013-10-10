@@ -1,0 +1,53 @@
+{{extend 'layout.html'}}
+{{for i in range(len(x)):}}
+<h3><a href={{=str(x[i]['url'])}} target="_blank">{{=x[i]['heading']}}</a></h3>
+<right>Posted by : <b>{{=x[i]['postedby']}}</b> on <b>{{=x[i]['tdate']}}</b>&nbsp;&nbsp;&nbsp;<br/><b>likes : </b>{{=x[i]['likes']}} &nbsp;&nbsp;&nbsp;<b>Dislikes :</b>{{=x[i]['dislikes']}}</right><br/>
+
+
+<br/>
+{{if(x[i]['yvideo']):}}
+{{source="//www.youtube.com/embed/"+(x[i]['yvideo'])[31:]}}
+<iframe width="560" height="315" src={{=source}} frameborder="0" allowfullscreen></iframe>
+{{pass}}
+
+{{if( (str(auth.user.first_name+" "+auth.user.last_name)==x[i]['postedby']) or auth.user.designation=='A'):}}
+<div style="text-align:right">
+	<form action={{=URL('default','delete_news')}} method="post">
+		<input type="hidden" name="nid" value={{=x[i]['id']}}/>
+		<input type="submit" value="Delete"/>	
+	</form>
+	<form action={{=URL('default','edit_news')}} method="post">
+		<input type="hidden" name="nid" value={{=x[i]['id']}}/>
+		<input type="submit" value="Edit"/>	
+	</form>
+</div>
+{{pass}}
+
+
+
+<form action={{=URL('default','likes')}} method="post">
+    <input type="hidden" name="nid" value={{=x[i]['id']}}/>
+    <input type="submit" value="Like"/>
+</form>
+<form action={{=URL('default','dislikes')}} method="post">
+    <input type="hidden" name="nid" value={{=x[i]['id']}}/>
+    <input type="submit" value="Dislike"/>
+</form>
+<button type="button" value="comment" onclick="show({{=x[i]['id']}})">Comment</button>
+<form action={{=URL("default","add_comment",args=x[i]['id'])}} method="POST" style="visibility:hidden" id={{=x[i]['id']}}>
+    <input type="hidden" name="news_id"  value={{=x[i]['id']}}/>
+    <textarea  name="com" rows="2" cols="10"></textarea>
+    <button type="submit" value="submit"> Submit </button>
+</form>
+<form action={{=URL("default","see_comments")}} method="post">
+    <input type="hidden" name="news_id" value={{=x[i]['id']}}/>
+    <input type="submit" value="See Comments"/>
+</form>
+<hr/>
+{{pass}}
+<script>
+    function show(id)
+    {
+        document.getElementById(id).style.visibility="visible";
+    }
+</script>

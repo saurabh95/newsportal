@@ -1,0 +1,560 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.AttributeError'> 'IS_IN_SET' object has no attribute 'startswith'"
+p3
+sS'layer'
+p4
+S'/home/saurabh/web2py/applications/NewsPortal/models/db.py'
+p5
+sS'code'
+p6
+S"# -*- coding: utf-8 -*-\n\n#########################################################################\n## This scaffolding model makes your app work on Google App Engine too\n## File is released under public domain and you can use without limitations\n#########################################################################\n\n## if SSL/HTTPS is properly configured and you want all HTTP requests to\n## be redirected to HTTPS, uncomment the line below:\n# request.requires_https()\n\nif not request.env.web2py_runtime_gae:\n    ## if NOT running on Google App Engine use SQLite or other DB\n    db = DAL('sqlite://storage.sqlite',pool_size=1,check_reserved=['all'])\nelse:\n    ## connect to Google BigTable (optional 'google:datastore://namespace')\n    db = DAL('google:datastore')\n    ## store sessions and tickets there\n    session.connect(request, response, db=db)\n    ## or store session in Memcache, Redis, etc.\n    ## from gluon.contrib.memdb import MEMDB\n    ## from google.appengine.api.memcache import Client\n    ## session.connect(request, response, db = MEMDB(Client()))\n\n## by default give a view/generic.extension to all actions from localhost\n## none otherwise. a pattern can be 'controller/function.extension'\nresponse.generic_patterns = ['*'] if request.is_local else []\n## (optional) optimize handling of static files\n# response.optimize_css = 'concat,minify,inline'\n# response.optimize_js = 'concat,minify,inline'\n\n#########################################################################\n## Here is sample code if you need for\n## - email capabilities\n## - authentication (registration, login, logout, ... )\n## - authorization (role based authorization)\n## - services (xml, csv, json, xmlrpc, jsonrpc, amf, rss)\n## - old style crud actions\n## (more options discussed in gluon/tools.py)\n#########################################################################\n\nfrom gluon.tools import Auth, Crud, Service, PluginManager, prettydate\nauth = Auth(db)\ncrud, service, plugins = Crud(db), Service(), PluginManager()\n\n## create all tables needed by auth if not custom tables\nauth.settings.extra_fields['auth_user']=[\n                Field('designation',IS_IN_SET('Admin','User'))\n                ]\nauth.define_tables(username=False, signature=False)\n\n## configure email\nmail = auth.settings.mailer\nmail.settings.server = 'logging' or 'smtp.gmail.com:587'\nmail.settings.sender = 'you@gmail.com'\nmail.settings.login = 'username:password'\n\n## configure auth policy\nauth.settings.registration_requires_verification = False\nauth.settings.registration_requires_approval = False\nauth.settings.reset_password_requires_verification = True\n\n## if you need to use OpenID, Facebook, MySpace, Twitter, Linkedin, etc.\n## register with janrain.com, write your domain:api_key in private/janrain.key\nfrom gluon.contrib.login_methods.rpx_account import use_janrain\nuse_janrain(auth, filename='private/janrain.key')\n\n#########################################################################\n## Define your tables below (or better in another model file) for example\n##\n## >>> db.define_table('mytable',Field('myfield','string'))\n##\n## Fields can be 'string','text','password','integer','double','boolean'\n##       'date','time','datetime','blob','upload', 'reference TABLENAME'\n## There is an implicit 'id integer autoincrement' field\n## Consult manual for more options, validators, etc.\n##\n## More API examples for controllers:\n##\n## >>> db.mytable.insert(myfield='value')\n## >>> rows=db(db.mytable.myfield=='value').select(db.mytable.ALL)\n## >>> for row in rows: print row.id, row.myfield\n#########################################################################\n\n## after defining tables, uncomment below to enable auditing\n# auth.enable_record_versioning(db)\n\n\n\n\ndb.define_table('news',\n                Field('heading','string'),\n                Field('category',requires=IS_IN_DB(db,'category.id','category.name')),\n                Field('desription','string'),\n                Field('rating','integer'),\n                Field('tdate','string'),\n                Field('url','string')\n                )\ndb.define_table('category',\n                Field('name','string')\n                )\n"
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__hash__'
+p12
+S"<method-wrapper '__hash__' of exceptions.AttributeError object>"
+p13
+sS'__setattr__'
+p14
+S"<method-wrapper '__setattr__' of exceptions.AttributeError object>"
+p15
+sS'__reduce_ex__'
+p16
+S'<built-in method __reduce_ex__ of exceptions.AttributeError object>'
+p17
+sS'__getslice__'
+p18
+S"<method-wrapper '__getslice__' of exceptions.AttributeError object>"
+p19
+sS'__getitem__'
+p20
+S"<method-wrapper '__getitem__' of exceptions.AttributeError object>"
+p21
+sS'__setstate__'
+p22
+S'<built-in method __setstate__ of exceptions.AttributeError object>'
+p23
+sS'__reduce__'
+p24
+S'<built-in method __reduce__ of exceptions.AttributeError object>'
+p25
+sS'__str__'
+p26
+S"<method-wrapper '__str__' of exceptions.AttributeError object>"
+p27
+sS'__format__'
+p28
+S'<built-in method __format__ of exceptions.AttributeError object>'
+p29
+sS'__getattribute__'
+p30
+S"<method-wrapper '__getattribute__' of exceptions.AttributeError object>"
+p31
+sS'__class__'
+p32
+S"<type 'exceptions.AttributeError'>"
+p33
+sS'__unicode__'
+p34
+S'<built-in method __unicode__ of exceptions.AttributeError object>'
+p35
+sS'__delattr__'
+p36
+S"<method-wrapper '__delattr__' of exceptions.AttributeError object>"
+p37
+sS'__subclasshook__'
+p38
+S'<built-in method __subclasshook__ of type object>'
+p39
+sS'__repr__'
+p40
+S"<method-wrapper '__repr__' of exceptions.AttributeError object>"
+p41
+sS'args'
+p42
+S'("\'IS_IN_SET\' object has no attribute \'startswith\'",)'
+p43
+sS'__dict__'
+p44
+S'{}'
+p45
+sS'__sizeof__'
+p46
+S'<built-in method __sizeof__ of exceptions.AttributeError object>'
+p47
+sS'__doc__'
+p48
+S"'Attribute not found.'"
+p49
+sS'__init__'
+p50
+S"<method-wrapper '__init__' of exceptions.AttributeError object>"
+p51
+sS'__new__'
+p52
+S'<built-in method __new__ of type object>'
+p53
+ssS'evalue'
+p54
+S"'IS_IN_SET' object has no attribute 'startswith'"
+p55
+sS'request'
+p56
+cgluon.html
+XML_unpickle
+p57
+(S's\nV\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top">ajax</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">application</td><td valign="top">:</td><td><div>NewsPortal</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">args</td><td valign="top">:</td><td><div><table><tr><td><div>db</div></td></tr><tr><td><div>auth_user</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">body</td><td valign="top">:</td><td><div>&lt;cStringIO.StringO object at 0xade79d20&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cid</td><td valign="top">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">client</td><td valign="top">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">controller</td><td valign="top">:</td><td><div>appadmin</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cookies</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">session_id_admin</td><td valign="top">:</td><td><div>127.0.0.1-07456d87-2ae9-4702-bad6-d9880555521e<table><tr><td style="font-weight:bold;vertical-align:top">comment</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">domain</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">expires</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">httponly</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">max-age</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">path</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">secure</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">version</td><td valign="top">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_id_newsportal</td><td valign="top">:</td><td><div>127.0.0.1-99172aac-f7ab-44a7-806d-dd0e1aeef706<table><tr><td style="font-weight:bold;vertical-align:top">comment</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">domain</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">expires</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">httponly</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">max-age</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">path</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">secure</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">version</td><td valign="top">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_id_welcome</td><td valign="top">:</td><td><div>127.0.0.1-193c8300-8467-404c-94eb-17633aa65b87<table><tr><td style="font-weight:bold;vertical-align:top">comment</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">domain</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">expires</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">httponly</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">max-age</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">path</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">secure</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">version</td><td valign="top">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">env</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">app_folders</td><td valign="top">:</td><td><div>set([&#x27;/home/saurabh/web2py/applications/admin/&#x27;, &#x27;/home/saurabh/web2py/applications/NewsPortal/&#x27;, &#x27;/home/saurabh/web2py/applications/welcome/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">applications_parent</td><td valign="top">:</td><td><div>/home/saurabh/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cmd_args</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cmd_options</td><td valign="top">:</td><td><div>&lt;Values at 0xa8096ac: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;with_scheduler&#x27;: False, &#x27;ips&#x27;: [&#x27;127.0.1.1&#x27;], &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;port&#x27;: 8000, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;saurabh-Inspiron-N4050&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;/home/saurabh/web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;import_models&#x27;: False, &#x27;winservice&#x27;: &#x27;&#x27;, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;profiler_filename&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;scheduler_groups&#x27;: None, &#x27;password&#x27;: &#x27;&lt;ask&gt;&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;interfaces&#x27;: None, &#x27;minthreads&#x27;: None, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">db_sessions</td><td valign="top">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">debugging</td><td valign="top">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">gluon_parent</td><td valign="top">:</td><td><div>/home/saurabh/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_accept</td><td valign="top">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_accept_encoding</td><td valign="top">:</td><td><div>gzip,deflate,sdch</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_accept_language</td><td valign="top">:</td><td><div>en-US,en;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_cache_control</td><td valign="top">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_connection</td><td valign="top">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_cookie</td><td valign="top">:</td><td><div>session_id_welcome=127.0.0.1-193c8300-8467-404c-94eb-17633aa65b87; session_id_newsportal=127.0.0.1-99172aac-f7ab-44a7-806d-dd0e1aeef706; session_id_admin=127.0.0.1-07456d87-2ae9-4702-bad6-d9880555521e</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_host</td><td valign="top">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_referer</td><td valign="top">:</td><td><div>http://127.0.0.1:8000/NewsPortal/appadmin/select/db?query=db.auth_user.id%3E0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_user_agent</td><td valign="top">:</td><td><div>Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_jython</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_pypy</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">local_hosts</td><td valign="top">:</td><td><div><table><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>saurabh-Inspiron-N4050</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">path_info</td><td valign="top">:</td><td><div>/NewsPortal/appadmin/insert/db/auth_user</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">query_string</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">remote_addr</td><td valign="top">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">remote_port</td><td valign="top">:</td><td><div>54695</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">request_method</td><td valign="top">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">request_uri</td><td valign="top">:</td><td><div>/NewsPortal/appadmin/insert/db/auth_user</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">script_name</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">server_name</td><td valign="top">:</td><td><div>saurabh-Inspiron-N4050</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">server_port</td><td valign="top">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">server_protocol</td><td valign="top">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">server_software</td><td valign="top">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">web2py_path</td><td valign="top">:</td><td><div>/home/saurabh/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">web2py_version</td><td valign="top">:</td><td><div>2.5.1-stable+timestamp.2013.06.06.15.39.19</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_errors</td><td valign="top">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0xb72c10d0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_file_wrapper</td><td valign="top">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0xa7b6e0c&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_input</td><td valign="top">:</td><td><div>&lt;socket._fileobject object at 0xada26dac&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_multiprocess</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_multithread</td><td valign="top">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_run_once</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_url_scheme</td><td valign="top">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_version</td><td valign="top">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">extension</td><td valign="top">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">folder</td><td valign="top">:</td><td><div>/home/saurabh/web2py/applications/NewsPortal/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">function</td><td valign="top">:</td><td><div>insert</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">get_vars</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">global_settings</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">app_folders</td><td valign="top">:</td><td><div>set([&#x27;/home/saurabh/web2py/applications/admin/&#x27;, &#x27;/home/saurabh/web2py/applications/NewsPortal/&#x27;, &#x27;/home/saurabh/web2py/applications/welcome/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">applications_parent</td><td valign="top">:</td><td><div>/home/saurabh/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cmd_args</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cmd_options</td><td valign="top">:</td><td><div>&lt;Values at 0xa8096ac: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;with_scheduler&#x27;: False, &#x27;ips&#x27;: [&#x27;127.0.1.1&#x27;], &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;port&#x27;: 8000, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;saurabh-Inspiron-N4050&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;/home/saurabh/web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;import_models&#x27;: False, &#x27;winservice&#x27;: &#x27;&#x27;, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;profiler_filename&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;scheduler_groups&#x27;: None, &#x27;password&#x27;: &#x27;&lt;ask&gt;&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;interfaces&#x27;: None, &#x27;minthreads&#x27;: None, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">db_sessions</td><td valign="top">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">debugging</td><td valign="top">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">gluon_parent</td><td valign="top">:</td><td><div>/home/saurabh/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_jython</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_pypy</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">local_hosts</td><td valign="top">:</td><td><div><table><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>saurabh-Inspiron-N4050</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">web2py_version</td><td valign="top">:</td><td><div>2.5.1-stable+timestamp.2013.06.06.15.39.19</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_https</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_local</td><td valign="top">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_restful</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">now</td><td valign="top">:</td><td><div>datetime.datetime(2013, 8, 28, 17, 18, 12, 983259)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">post_vars</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">raw_args</td><td valign="top">:</td><td><div>db/auth_user</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">raw_extension</td><td valign="top">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">url</td><td valign="top">:</td><td><div>/NewsPortal/appadmin/insert/db/auth_user</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">utcnow</td><td valign="top">:</td><td><div>datetime.datetime(2013, 8, 28, 11, 48, 12, 983288)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">uuid</td><td valign="top">:</td><td><div>NewsPortal/127.0.0.1.2013-08-28.17-18-12.ea81dd64-a213-4a5a-88de-0e739178e644</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">vars</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">environ</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">HTTP_ACCEPT</td><td valign="top">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_ACCEPT_ENCODING</td><td valign="top">:</td><td><div>gzip,deflate,sdch</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_ACCEPT_LANGUAGE</td><td valign="top">:</td><td><div>en-US,en;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_CACHE_CONTROL</td><td valign="top">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_CONNECTION</td><td valign="top">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_COOKIE</td><td valign="top">:</td><td><div>session_id_welcome=127.0.0.1-193c8300-8467-404c-94eb-17633aa65b87; session_id_newsportal=127.0.0.1-99172aac-f7ab-44a7-806d-dd0e1aeef706; session_id_admin=127.0.0.1-07456d87-2ae9-4702-bad6-d9880555521e</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_HOST</td><td valign="top">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_REFERER</td><td valign="top">:</td><td><div>http://127.0.0.1:8000/NewsPortal/appadmin/select/db?query=db.auth_user.id%3E0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_USER_AGENT</td><td valign="top">:</td><td><div>Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">PATH_INFO</td><td valign="top">:</td><td><div>/NewsPortal/appadmin/insert/db/auth_user</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">QUERY_STRING</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">REMOTE_ADDR</td><td valign="top">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">REMOTE_PORT</td><td valign="top">:</td><td><div>54695</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">REQUEST_METHOD</td><td valign="top">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">REQUEST_URI</td><td valign="top">:</td><td><div>/NewsPortal/appadmin/insert/db/auth_user</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">SCRIPT_NAME</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">SERVER_NAME</td><td valign="top">:</td><td><div>saurabh-Inspiron-N4050</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">SERVER_PORT</td><td valign="top">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">SERVER_PROTOCOL</td><td valign="top">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">SERVER_SOFTWARE</td><td valign="top">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.errors</td><td valign="top">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0xb72c10d0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.file_wrapper</td><td valign="top">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0xa7b6e0c&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.input</td><td valign="top">:</td><td><div>&lt;cStringIO.StringO object at 0xade79d20&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.multiprocess</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.multithread</td><td valign="top">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.run_once</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.url_scheme</td><td valign="top">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.version</td><td valign="top">:</td><td><div>1</div></td></tr></table></div></td></tr></table></div></td></tr></table></div>'
+tRp58
+sS'frames'
+p59
+(lp60
+(dp61
+S'file'
+p62
+S'/home/saurabh/web2py/gluon/restricted.py'
+p63
+sS'dump'
+p64
+(dp65
+S'environment'
+p66
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, 'CAT': <class 'gluon.html.CAT'>, 'CENTER': <class 'gluon.html.CENTER'>, ...}"
+p67
+sS'ccode'
+p68
+S'<code object <module> at 0xad850cc8, file "/home...y/applications/NewsPortal/models/db.py", line 12>'
+p69
+ssS'lnum'
+p70
+I212
+sS'lines'
+p71
+(dp72
+I207
+S'    try:'
+p73
+sI208
+S'        if isinstance(code, types.CodeType):'
+p74
+sI209
+S'            ccode = code'
+p75
+sI210
+S'        else:'
+p76
+sI211
+S'            ccode = compile2(code, layer)'
+p77
+sI212
+S'        exec ccode in environment'
+p78
+sI213
+S'    except HTTP:'
+p79
+sI214
+S'        raise'
+p80
+sI215
+S'    except RestrictedError:'
+p81
+sI216
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p82
+ssS'call'
+p83
+S'(code="# -*- coding: utf-8 -*-\\n\\n#######################...        Field(\'name\',\'string\')\\n                )\\n", environment={\'A\': <class \'gluon.html.A\'>, \'ANY_OF\': <class \'gluon.validators.ANY_OF\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'BUTTON\': <class \'gluon.html.BUTTON\'>, \'CAT\': <class \'gluon.html.CAT\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, ...}, layer=\'/home/saurabh/web2py/applications/NewsPortal/models/db.py\')'
+p84
+sS'func'
+p85
+S'restricted'
+p86
+sa(dp87
+g62
+S'/home/saurabh/web2py/applications/NewsPortal/models/db.py'
+p88
+sg64
+(dp89
+S'username'
+p90
+S'undefined'
+p91
+sS'auth.define_tables'
+p92
+S'<bound method Auth.define_tables of <gluon.tools.Auth object>>'
+p93
+sS'builtinFalse'
+p94
+S'False'
+p95
+sS'auth'
+p96
+S'<gluon.tools.Auth object>'
+p97
+sS'signature'
+p98
+g91
+ssg70
+I50
+sg71
+(dp99
+I45
+S''
+sI46
+S'## create all tables needed by auth if not custom tables'
+p100
+sI47
+S"auth.settings.extra_fields['auth_user']=["
+p101
+sI48
+S"                Field('designation',IS_IN_SET('Admin','User'))"
+p102
+sI49
+S'                ]'
+p103
+sI50
+S'auth.define_tables(username=False, signature=False)'
+p104
+sI51
+S''
+sI52
+S'## configure email'
+p105
+sI53
+S'mail = auth.settings.mailer'
+p106
+sI54
+S"mail.settings.server = 'logging' or 'smtp.gmail.com:587'"
+p107
+ssg83
+S'()'
+p108
+sg85
+S'<module>'
+p109
+sa(dp110
+g62
+S'/home/saurabh/web2py/gluon/tools.py'
+p111
+sg64
+(dp112
+S'builtinformat'
+p113
+S'<built-in function format>'
+p114
+ssg70
+I1609
+sg71
+(dp115
+I1604
+S'                    *extra_fields,'
+p116
+sI1605
+S'                    **dict('
+p117
+sI1606
+S'                        migrate=self.__get_migrate(settings.table_user_name,'
+p118
+sI1607
+S'                                                   migrate),'
+p119
+sI1608
+S'                        fake_migrate=fake_migrate,'
+p120
+sI1609
+S"                        format='%(first_name)s %(last_name)s (%(id)s)'))"
+p121
+sI1610
+S"        reference_table_user = 'reference %s' % settings.table_user_name"
+p122
+sI1611
+S'        if not settings.table_group_name in db.tables:'
+p123
+sI1612
+S'            extra_fields = settings.extra_fields.get('
+p124
+sI1613
+S'                settings.table_group_name, []) + signature_list'
+p125
+ssg83
+S'(self=<gluon.tools.Auth object>, username=False, signature=False, migrate=True, fake_migrate=False)'
+p126
+sg85
+S'define_tables'
+p127
+sa(dp128
+g62
+S'/home/saurabh/web2py/gluon/dal.py'
+p129
+sg64
+(dp130
+S'fields'
+p131
+S'(<gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>)'
+p132
+sS'self'
+p133
+S'<DAL uri="sqlite://storage.sqlite">'
+p134
+sS'args'
+p135
+S"{'fake_migrate': False, 'format': '%(first_name)s %(last_name)s (%(id)s)', 'migrate': True}"
+p136
+sS'tablename'
+p137
+S"'auth_user'"
+p138
+sS'table'
+p139
+g91
+sS'self.lazy_define_table'
+p140
+S'<bound method DAL.lazy_define_table of <DAL uri="sqlite://storage.sqlite">>'
+p141
+ssg70
+I7788
+sg71
+(dp142
+I7783
+S'                    % (tablename,invalid_args))'
+p143
+sI7784
+S'        if self._lazy_tables and not tablename in self._LAZY_TABLES:'
+p144
+sI7785
+S'            self._LAZY_TABLES[tablename] = (tablename,fields,args)'
+p145
+sI7786
+S'            table = None'
+p146
+sI7787
+S'        else:'
+p147
+sI7788
+S'            table = self.lazy_define_table(tablename,*fields,**args)'
+p148
+sI7789
+S'        if not tablename in self.tables:'
+p149
+sI7790
+S'            self.tables.append(tablename)'
+p150
+sI7791
+S'        return table'
+p151
+sI7792
+S''
+ssg83
+S'(self=<DAL uri="sqlite://storage.sqlite">, tablename=\'auth_user\', *fields=(<gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>), **args={\'fake_migrate\': False, \'format\': \'%(first_name)s %(last_name)s (%(id)s)\', \'migrate\': True})'
+p152
+sg85
+S'define_table'
+p153
+sa(dp154
+g62
+S'/home/saurabh/web2py/gluon/dal.py'
+p155
+sg64
+(dp156
+S'polymodel'
+p157
+S'None'
+p158
+ssg70
+I7825
+sg71
+(dp159
+I7820
+S'            try:'
+p160
+sI7821
+S'                GLOBAL_LOCKER.acquire()'
+p161
+sI7822
+S'                self._lastsql = self._adapter.create_table('
+p162
+sI7823
+S'                    table,migrate=migrate,'
+p163
+sI7824
+S'                    fake_migrate=fake_migrate,'
+p164
+sI7825
+S'                    polymodel=polymodel)'
+p165
+sI7826
+S'            finally:'
+p166
+sI7827
+S'                GLOBAL_LOCKER.release()'
+p167
+sI7828
+S'        else:'
+p168
+sI7829
+S'            table._dbt = None'
+p169
+ssg83
+S'(self=<DAL uri="sqlite://storage.sqlite">, tablename=\'auth_user\', *fields=(<gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>, <gluon.dal.Field object>), **args={\'fake_migrate\': False, \'format\': \'%(first_name)s %(last_name)s (%(id)s)\', \'migrate\': True})'
+p170
+sg85
+S'lazy_define_table'
+p171
+sa(dp172
+g62
+S'/home/saurabh/web2py/gluon/dal.py'
+p173
+sg64
+(dp174
+S'field_type'
+p175
+S'<gluon.validators.IS_IN_SET object>'
+p176
+sS'field_type.startswith'
+p177
+g91
+ssg70
+I781
+sg71
+(dp178
+I776
+S'            sortable += 1'
+p179
+sI777
+S'            field_name = field.name'
+p180
+sI778
+S'            field_type = field.type'
+p181
+sI779
+S'            if isinstance(field_type,SQLCustomType):'
+p182
+sI780
+S'                ftype = field_type.native or field_type.type'
+p183
+sI781
+S"            elif field_type.startswith('reference'):"
+p184
+sI782
+S'                referenced = field_type[10:].strip()'
+p185
+sI783
+S"                if referenced == '.':"
+p186
+sI784
+S'                    referenced = tablename'
+p187
+sI785
+S'                constraint_name = self.constraint_name(tablename, field_name)'
+p188
+ssg83
+S'(self=<gluon.dal.SQLiteAdapter object>, table=<Table auth_user (id,first_name,last_name,email,...,reset_password_key,registration_id,designation)>, migrate=True, fake_migrate=False, polymodel=None)'
+p189
+sg85
+S'create_table'
+p190
+sasS'pyver'
+p191
+S'Python 2.7.3: /usr/bin/python (prefix: /usr)'
+p192
+sS'session'
+p193
+g57
+(S's\x1a\x01\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top">last_orderby</td><td valign="top">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">last_query</td><td valign="top">:</td><td><div>db.auth_user.id&gt;0</div></td></tr></table></div>'
+tRp194
+sS'etype'
+p195
+S"<type 'exceptions.AttributeError'>"
+p196
+sS'date'
+p197
+S'Wed Aug 28 17:18:13 2013'
+p198
+sS'response'
+p199
+g57
+(S's\xe7\x11\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top">body</td><td valign="top">:</td><td><div>&lt;cStringIO.StringO object at 0xadf606e0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cookies</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">session_id_newsportal</td><td valign="top">:</td><td><div>127.0.0.1-99172aac-f7ab-44a7-806d-dd0e1aeef706<table><tr><td style="font-weight:bold;vertical-align:top">comment</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">domain</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">expires</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">httponly</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">max-age</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">path</td><td valign="top">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">secure</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">version</td><td valign="top">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">delimiters</td><td valign="top">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">files</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">flash</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">generic_patterns</td><td valign="top">:</td><td><div><table><tr><td><div>*</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">headers</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">X-Powered-By</td><td valign="top">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">menu</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">meta</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">models_to_run</td><td valign="top">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^appadmin/\\w+\\.py$</div></td></tr><tr><td><div>^appadmin/insert/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">postprocessing</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_cookie_expires</td><td valign="top">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_data_name</td><td valign="top">:</td><td><div>session_data_newsportal</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_file</td><td valign="top">:</td><td><div>&lt;open file &#x27;/home/saurabh/web2py/applications/NewsPortal/sessions/127.0.0.1-99172aac-f7ab-44a7-806d-dd0e1aeef706&#x27;, mode &#x27;rb+&#x27; at 0xad861a70&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_filename</td><td valign="top">:</td><td><div>/home/saurabh/web2py/applications/NewsPortal/sessions/127.0.0.1-99172aac-f7ab-44a7-806d-dd0e1aeef706</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_id</td><td valign="top">:</td><td><div>127.0.0.1-99172aac-f7ab-44a7-806d-dd0e1aeef706</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_id_name</td><td valign="top">:</td><td><div>session_id_newsportal</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_locked</td><td valign="top">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_new</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_storage_type</td><td valign="top">:</td><td><div>file</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">status</td><td valign="top">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">view</td><td valign="top">:</td><td><div>appadmin/insert.html</div></td></tr></table></div>'
+tRp200
+sS'locals'
+p201
+(dp202
+S'polymodel'
+p203
+S'None'
+p204
+sS'field_type'
+p205
+S'<gluon.validators.IS_IN_SET object>'
+p206
+sS'sortable'
+p207
+S'9'
+sS'sql_fields_aux'
+p208
+S"{'email': {'sql': 'CHAR(512)'}, 'first_name': {'sql': 'CHAR(128)'}, 'id': {'sql': 'INTEGER PRIMARY KEY AUTOINCREMENT'}, 'last_name': {'sql': 'CHAR(128)'}, 'password': {'sql': 'CHAR(512)'}, 'registration_id': {'sql': 'CHAR(512)'}, 'registration_key': {'sql': 'CHAR(512)'}, 'reset_password_key': {'sql': 'CHAR(512)'}}"
+p209
+sS'TFK'
+p210
+g45
+sS'postcreation_fields'
+p211
+S'[]'
+p212
+sS'migrate'
+p213
+S'True'
+p214
+sS'fields'
+p215
+S"['id INTEGER PRIMARY KEY AUTOINCREMENT', 'first_name CHAR(128)', 'last_name CHAR(128)', 'email CHAR(512)', 'password CHAR(512)', 'registration_key CHAR(512)', 'reset_password_key CHAR(512)', 'registration_id CHAR(512)']"
+p216
+sS'self'
+p217
+S'<gluon.dal.SQLiteAdapter object>'
+p218
+sS'tablename'
+p219
+S"'auth_user'"
+p220
+sS'fake_migrate'
+p221
+g95
+sS'db'
+p222
+S'<DAL uri="sqlite://storage.sqlite">'
+p223
+sS'field'
+p224
+S'<gluon.dal.Field object>'
+p225
+sS'ftype'
+p226
+S"'CHAR(512)'"
+p227
+sS'table'
+p228
+S'<Table auth_user (id,first_name,last_name,email,...,reset_password_key,registration_id,designation)>'
+p229
+sS'sql_fields'
+p230
+S"{'email': {'length': 512, 'notnull': False, 'sortable': 4, 'sql': 'CHAR(512)', 'type': 'string', 'unique': False}, 'first_name': {'length': 128, 'notnull': False, 'sortable': 2, 'sql': 'CHAR(128)', 'type': 'string', 'unique': False}, 'id': {'length': 512, 'notnull': False, 'sortable': 1, 'sql': 'INTEGER PRIMARY KEY AUTOINCREMENT', 'type': 'id', 'unique': False}, 'last_name': {'length': 128, 'notnull': False, 'sortable': 3, 'sql': 'CHAR(128)', 'type': 'string', 'unique': False}, 'password': {'length': 512, 'notnull': False, 'sortable': 5, 'sql': 'CHAR(512)', 'type': 'password', 'unique': False}, 'registration_id': {'length': 512, 'notnull': False, 'sortable': 8, 'sql': 'CHAR(512)', 'type': 'string', 'unique': False}, 'registration_key': {'length': 512, 'notnull': False, 'sortable': 6, 'sql': 'CHAR(512)', 'type': 'string', 'unique': False}, 'reset_password_key': {'length': 512, 'notnull': False, 'sortable': 7, 'sql': 'CHAR(512)', 'type': 'string', 'unique': False}}"
+p231
+sS'field_name'
+p232
+S"'designation'"
+p233
+sS'types'
+p234
+S"{'big-id': 'BIGINT PRIMARY KEY AUTOINCREMENT', 'big-reference': 'BIGINT REFERENCES %(foreign_key)s ON DELETE %(on_delete_action)s', 'bigint': 'INTEGER', 'blob': 'BLOB', 'boolean': 'CHAR(1)', 'date': 'DATE', 'datetime': 'TIMESTAMP', 'decimal': 'DOUBLE', 'double': 'DOUBLE', 'float': 'DOUBLE', ...}"
+p235
+sssS'traceback'
+p236
+S'Traceback (most recent call last):\n  File "/home/saurabh/web2py/gluon/restricted.py", line 212, in restricted\n    exec ccode in environment\n  File "/home/saurabh/web2py/applications/NewsPortal/models/db.py", line 50, in <module>\n    auth.define_tables(username=False, signature=False)\n  File "/home/saurabh/web2py/gluon/tools.py", line 1609, in define_tables\n    format=\'%(first_name)s %(last_name)s (%(id)s)\'))\n  File "/home/saurabh/web2py/gluon/dal.py", line 7788, in define_table\n    table = self.lazy_define_table(tablename,*fields,**args)\n  File "/home/saurabh/web2py/gluon/dal.py", line 7825, in lazy_define_table\n    polymodel=polymodel)\n  File "/home/saurabh/web2py/gluon/dal.py", line 781, in create_table\n    elif field_type.startswith(\'reference\'):\nAttributeError: \'IS_IN_SET\' object has no attribute \'startswith\'\n'
+p237
+s.
